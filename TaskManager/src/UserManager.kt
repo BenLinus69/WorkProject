@@ -6,7 +6,7 @@ class UserManager : UserService {
     }
 
     override fun listUserTasks(user: User): MutableList<Task> {
-        return user.getTasks()
+        return user.tasks
     }
 
     fun getUsers() = users

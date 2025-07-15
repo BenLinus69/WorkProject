@@ -1,8 +1,1 @@
-data class User(
-    private val name : String,
-    private val tasks : MutableList<Task> = mutableListOf()
-)
-{
-    fun getName(): String = name
-    fun getTasks() = tasks
-}
+data class User(val name: String, val tasks: MutableList<Task> = mutableListOf())

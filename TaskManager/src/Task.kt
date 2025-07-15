@@ -1,15 +1,10 @@
 import java.time.LocalDate
 
-data class Task(
-    private val title : String,
-    private val description: String,
-    private val dueDate: LocalDate,
-    private val isCompleted: Boolean
-)
-{
-    fun getTitle():String = title
-    fun getDesc():String = description
-    fun getDate():LocalDate = dueDate
-    fun getComp():Boolean = isCompleted
-
-}
+data class Task(val title: String, val description: String, val dueDate: LocalDate, val isCompleted: Boolean = false){
+    override fun toString(): String {
+        return "Task{\n" +
+                "title='$title',\n" +
+                "description='$description',\n" +
+                "dueDate=$dueDate,\n" +
+                "isCompleted=$isCompleted)\n}"
+    }}

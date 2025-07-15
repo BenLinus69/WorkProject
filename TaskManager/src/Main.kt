@@ -11,9 +11,9 @@ fun main() {
                 val inputName = readln()
                 while(true) {
                     when {
-                        manager.getUsers().find { it.getName() == inputName } != null -> {
-                            val user = manager.getUsers().find { it.getName() == inputName }!!
-                            println("Welcome back, ${user.getName()}!")
+                        manager.getUsers().find { it.name == inputName } != null -> {
+                            val user = manager.getUsers().find { it.name == inputName }!!
+                            println("Welcome back, ${user.name}!")
                             val repo = TaskRepositoryImpl(user)
                             println("Type 1, 2 or 3:")
                             println("1. Add new task \n2. Manage tasks\n3. Exit")
@@ -31,16 +31,16 @@ fun main() {
 
                                 "2" -> {
                                     println("Here are your tasks:")
-                                    repo.getTasks().sortedBy { it.getComp() }.forEach { task ->
-                                        println("Title: ${task.getTitle()}, Description: ${task.getDesc()}, Due Date: ${task.getDate()}, Completed: ${task.getComp()}")
+                                    repo.getTasks().sortedBy { it.isCompleted }.forEach { task ->
+                                        println("Title: ${task.title}, Description: ${task.description}, Due Date: ${task.dueDate}, Completed: ${task.isCompleted}")
                                     }
                                     println("Type the title of the task you want to manage or type 'exit' to go back:")
                                     when (val input = readln()) {
                                         "exit" -> continue
                                         else -> {
-                                            val task = repo.getTasks().find { it.getTitle() == input }
+                                            val task = repo.getTasks().find { it.title == input }
                                             if (task != null) {
-                                                println("Managing task: ${task.getTitle()}")
+                                                println("Managing task: ${task.title}")
                                                 println("1. Update task \n2. Delete task \n3. Complete task")
                                                 when (readln()) {
                                                     "1" -> {
@@ -54,8 +54,7 @@ fun main() {
                                                             task,
                                                             newTitle,
                                                             newDesc,
-                                                            newDate,
-                                                            task.getComp()
+                                                            newDate
                                                         )
                                                         println("Task updated successfully!")
                                                     }
@@ -92,7 +91,7 @@ fun main() {
                             val name = readln()
                             manager.addUser(name)
                             println("User $name created successfully!")
-                            val user = manager.getUsers().find { it.getName() == name }!!
+                            val user = manager.getUsers().find { it.name == name }!!
                             val repo = TaskRepositoryImpl(user)
                             println("Type 1, 2 or 3:")
                             println("1. Add new task \n2. Manage tasks\n3. Exit")
@@ -111,15 +110,15 @@ fun main() {
                                 "2" -> {
                                     println("Here are your tasks:")
                                     repo.getTasks().forEach { task ->
-                                        println("Title: ${task.getTitle()}, Description: ${task.getDesc()}, Due Date: ${task.getDate()}, Completed: ${task.getComp()}")
+                                        println("Title: ${task.title}, Description: ${task.description}, Due Date: ${task.dueDate}, Completed: ${task.isCompleted}")
                                     }
                                     println("Type the title of the task you want to manage or type 'exit' to go back:")
                                     when (val input = readln()) {
                                         "exit" -> continue
                                         else -> {
-                                            val task = repo.getTasks().find { it.getTitle() == input }
+                                            val task = repo.getTasks().find { it.title == input }
                                             if (task != null) {
-                                                println("Managing task: ${task.getTitle()}")
+                                                println("Managing task: ${task.title}")
                                                 println("1. Update task \n2. Delete task \n3. Complete task")
                                                 when (readln()) {
                                                     "1" -> {
@@ -133,8 +132,7 @@ fun main() {
                                                             task,
                                                             newTitle,
                                                             newDesc,
-                                                            newDate,
-                                                            task.getComp()
+                                                            newDate
                                                         )
                                                         println("Task updated successfully!")
                                                     }
