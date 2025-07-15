@@ -17,4 +17,10 @@ class TaskRepositoryImpl(user : User) : TaskRepository {
     override fun deleteTask(task: Task) {
         tasks.removeIf{tasks.contains(task)}
     }
+
+    override fun completeTask(task: Task) {
+        val completedTask = task.copy(isCompleted = true)
+        tasks.removeIf { it == task }
+        addTask(completedTask)
+    }
 }
