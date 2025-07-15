@@ -1,10 +1,10 @@
-import java.util.*
+import java.time.LocalDate
 
 class TaskRepositoryImpl(user : User) : TaskRepository {
     private val tasks : MutableList<Task> = user.getTasks()
     override fun getTasks() = tasks.toList()
 
-    override fun updateTask(task: Task, newtitle: String, newdesc: String, newdate: Date, newcomp: Boolean) {
+    override fun updateTask(task: Task, newtitle: String, newdesc: String, newdate: LocalDate, newcomp: Boolean) {
         val updatedTask = task.copy(title = newtitle, description = newdesc, dueDate = newdate, isCompleted = newcomp)
         tasks.removeIf { it == task }
         addTask(updatedTask)

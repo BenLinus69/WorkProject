@@ -1,15 +1,15 @@
-import java.util.Date
+import java.time.LocalDate
 
 data class Task(
     private val title : String,
     private val description: String,
-    private val dueDate: Date,
+    private val dueDate: LocalDate,
     private val isCompleted: Boolean
 )
 {
     fun getTitle():String = title
     fun getDesc():String = description
-    fun getDate():Date = dueDate
+    fun getDate():LocalDate = dueDate
     fun getComp():Boolean = isCompleted
 
 }
