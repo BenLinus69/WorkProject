@@ -4,8 +4,8 @@ class TaskRepositoryImpl(user : User) : TaskRepository {
     private val tasks : MutableList<Task> = user.tasks
     override fun getTasks() = tasks.toList()
 
-    override fun updateTask(task: Task, newtitle: String, newdesc: String, newdate: LocalDate) {
-        val updatedTask = task.copy(title = newtitle, description = newdesc, dueDate = newdate)
+    override fun updateTask(task: Task, newTitle: String, newDesc: String, newDate: LocalDate) {
+        val updatedTask = task.copy(title = newTitle, description = newDesc, dueDate = newDate)
         tasks.remove(task)
         tasks.add(updatedTask)
     }

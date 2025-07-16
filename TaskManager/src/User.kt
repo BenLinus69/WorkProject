@@ -1,1 +1,4 @@
-data class User(val name: String, val tasks: MutableList<Task> = mutableListOf())
+data class User(
+    val name: String,
+    val tasks: MutableList<Task> = mutableListOf()
+)
