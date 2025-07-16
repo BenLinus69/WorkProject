@@ -9,6 +9,6 @@ class UserManager : UserService {
         return user.getTasks()
     }
 
-    fun getUsers() = users
+    fun getUsers(): List<User> = users
 
 }

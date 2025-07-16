@@ -3,5 +3,6 @@ data class User(
     private val tasks : MutableList<Task> = mutableListOf()
 )
 {
-    fun getTasks() = tasks
+    fun getTasks(): MutableList<Task> = tasks
+    fun getName(): String = name
 }

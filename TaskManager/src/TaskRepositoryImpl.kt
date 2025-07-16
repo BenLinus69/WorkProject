@@ -1,13 +1,14 @@
 import java.time.LocalDate
 
 class TaskRepositoryImpl(user : User) : TaskRepository {
-    private val tasks : MutableList<Task> = user.getTasks()
+    private val tasks: MutableList<Task> = user.getTasks()
     override fun getTasks() = tasks.toList()
 
-    override fun updateTask(task: Task, newtitle: String, newdesc: String, newdate: LocalDate, newcomp: Boolean) {
-        val updatedTask = task.copy(title = newtitle, description = newdesc, dueDate = newdate, isCompleted = newcomp)
-        tasks.removeIf { it == task }
-        addTask(updatedTask)
+    override fun updateTask(task: Task, newTitle: String, newDescriptor: String, newDate: LocalDate, newIsCompleted: Boolean) {
+        val index = tasks.indexOf(task)
+        if (index != -1) {
+            tasks[index] = task.copy(title = newTitle, description = newDescriptor, dueDate = newDate, isCompleted = newIsCompleted)
+        }
     }
 
     override fun addTask(task: Task) {
@@ -15,6 +16,6 @@ class TaskRepositoryImpl(user : User) : TaskRepository {
     }
 
     override fun deleteTask(task: Task) {
-        tasks.removeIf{tasks.contains(task)}
+        tasks.remove(task)
     }
 }
