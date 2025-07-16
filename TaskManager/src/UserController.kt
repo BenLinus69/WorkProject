@@ -38,7 +38,7 @@ class UserController (val userManager: UserManager) {
                 "1" -> addTask(repository)
                 "2" -> manageTasks(repository)
                 "3" -> {
-                    println(repository.getTasks().ifEmpty { "No tasks available" })
+                    println(repository.getTasks().joinToString("\n").ifEmpty { "No tasks available" })
                 }
                 "4" -> {println("1. Login\n2. Exit")
                     return}
@@ -71,7 +71,7 @@ class UserController (val userManager: UserManager) {
         tasks.forEachIndexed() { index, task ->
             println("${index + 1}.  $task")
         }
-        println("Type the number of the task you want to manage! Or type 'exit' to go back to the menu.")
+        println("\nType the number of the task you want to manage! Or type 'exit' to go back to the menu.")
         while (true){
             val readln = readln()
             if (readln.lowercase() == "exit") {
@@ -139,7 +139,7 @@ class UserController (val userManager: UserManager) {
             tasks.forEachIndexed() { index, task ->
                 println("${index + 1}.  $task")
             }
-            println("Type the number of the task you want to manage! Or type 'exit' to go back to the menu.")
+            println("\nType the number of the task you want to manage! Or type 'exit' to go back to the menu.")
             return
         }
 
