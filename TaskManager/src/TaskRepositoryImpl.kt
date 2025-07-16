@@ -6,21 +6,21 @@ class TaskRepositoryImpl(user : User) : TaskRepository {
 
     override fun updateTask(task: Task, newtitle: String, newdesc: String, newdate: LocalDate) {
         val updatedTask = task.copy(title = newtitle, description = newdesc, dueDate = newdate)
-        tasks.removeIf { it == task }
+        tasks.remove(task)
         tasks.add(updatedTask)
     }
 
-    override fun addTask(task: Task) {
-        tasks.add(task)
+    override fun addTask(task: Task) : Boolean {
+        return tasks.add(task)
     }
 
-    override fun deleteTask(task: Task) {
-        tasks.removeIf{tasks.contains(task)}
+    override fun deleteTask(task: Task) : Boolean {
+        return tasks.remove(task)
     }
 
     override fun completeTask(task: Task) {
         val completedTask = task.copy(isCompleted = true)
-        tasks.removeIf { it == task }
+        tasks.remove(task)
         tasks.add(completedTask)
     }
 }
